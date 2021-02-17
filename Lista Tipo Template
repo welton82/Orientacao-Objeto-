@@ -1,0 +1,132 @@
+#include <iostream>
+#include<list>
+using namespace std;
+
+class Pessoa{
+private:
+    list<Pessoa> pessoa;
+    string nome;
+    string endereco;
+public:
+    void InsereInicio(Pessoa p){
+        pessoa.push_front(p);
+    }
+    void InsereFim(Pessoa p){
+        pessoa.push_back(p);
+    }
+    void InserirPosicao(Pessoa p, int pos){
+        list<Pessoa>::iterator it;
+        it = pessoa.begin();
+        for(int i =1; i<=pos; i++)
+        {
+            it++;
+        }
+        pessoa.insert(it, p);
+    }
+    void Remover(Pessoa p, int pos){
+        list<Pessoa>::iterator it;
+        it = pessoa.begin();
+        for(int i =1; i<=pos; i++)
+        {
+            it++;
+        }
+        pessoa.erase(it);
+    }
+    void Listar(){
+        cout << "\n\n" << nome;
+        cout << "\n " << endereco;
+        for(auto x:pessoa)
+        {
+             x.Listar();
+        }
+    }
+    void setNome(string nome){
+        this->nome = nome;
+    }
+    string getNome(){
+        return nome;
+    }
+    void setEndereco(string endereco){
+        this->endereco = endereco;
+    }
+
+};
+
+
+int main()
+{
+    Pessoa p;
+    Pessoa pessoa;
+
+    string nome,endereco;
+    int op=-1;
+    int pos;
+    int i = 0;
+    while(op!=0)
+    {
+        cout << "\n1 - Inserir no Fim";
+        cout << "\n2 - Inserir Meio";
+        cout << "\n3 - Inserir Inicio";
+        cout << "\n4 - Listar";
+        cout << "\n5 - Remover Posicao";
+        cout << "\nOperacao: ";
+        cin >> op;
+        switch(op)
+        {
+        case 1:
+            cout << "\nNome: ";
+            fflush(stdin);
+            getline(cin,nome);
+            p.setNome(nome);
+            cout << "\nEndereco: ";
+            fflush(stdin);
+            getline(cin,endereco);
+            p.setEndereco(endereco);
+            pessoa.InsereFim(p);
+            break;
+        case 2:
+            cout << "\nNome: ";
+            fflush(stdin);
+            getline(cin,nome);
+            p.setNome(nome);
+            cout << "\nEndereco: ";
+            fflush(stdin);
+            getline(cin,endereco);
+            p.setEndereco(endereco);
+            cout << "\nPosição: ";
+            cin >> pos;
+            pessoa.InserirPosicao(p,pos);
+            break;
+        case 3:
+            cout << "\nNome: ";
+            fflush(stdin);
+            getline(cin,nome);
+            p.setNome(nome);
+            cout << "\nEndereco: ";
+            fflush(stdin);
+            getline(cin,endereco);
+            p.setEndereco(endereco);
+            pessoa.InsereInicio(p);
+            break;
+        case 4:
+            pessoa.Listar();
+            break;
+        case 5:
+            cout << "\nPosição: ";
+            cin >> pos;
+            pessoa.Remover(p, pos);
+            break;
+        default:
+            cout << "\nVoce saiu";
+            break;
+        }
+
+    }
+
+
+
+    return 0;
+}
+
+
+
