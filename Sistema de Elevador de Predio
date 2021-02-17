@@ -1,0 +1,921 @@
+#include <iostream>
+#define MAX 100
+using namespace std;
+
+class Subterraneo{
+private:
+     int qdeSubterraneo;
+public:
+     void setQdeSubterraneo(int qdeSubterraneo){
+         qdeSubterraneo = qdeSubterraneo * -1;
+          this->qdeSubterraneo = qdeSubterraneo;
+     }
+     int getQdeSubterraneo(){
+          return qdeSubterraneo;
+     }
+};
+class Normal{
+private:
+     int qdeNormal;
+public:
+     void setQdeNormal(int qdeNormal){
+          this->qdeNormal = qdeNormal;
+     }
+     int getQdeNormal(){
+          return qdeNormal;
+     }
+     
+};
+
+
+class Andares:public Normal, public Subterraneo{
+private:
+     int numero;
+     bool bTemElevador;
+public:
+     void setNumeroAndar( int getQdeSubterraneo(), int getQdeNormal()){
+          this->numero = getQdeSubterraneo() * (-1) + getQdeNormal();
+     }
+     int getNumeroAndar(){
+          return numero;
+     }
+     
+};
+class Elevador{
+private:
+     int posicaoElevador;
+     int metrosPerc;
+     bool bmanutencao;
+     bool bchamar;
+     
+public:
+    
+     void setBchamar(bool bchamar){
+          this->bchamar = bchamar;
+     }
+     bool getBchamar(){
+          return bchamar;
+     }
+     int getPosicaoElevador(){
+          return posicaoElevador;
+     }
+     void setPosicaoElevador(int posicaoElevador){
+          this->posicaoElevador = posicaoElevador;
+     }
+     
+     float getMetrosPercorridos(){
+          return metrosPerc;
+     }
+     void setMetrosPercorridos(float metrosPerc){
+          this->metrosPerc  = metrosPerc;
+     }
+     
+     bool getBmanutencao(){
+          return bmanutencao;
+     }
+     void setBmanutencao(bool bmanutencao){
+          this->bmanutencao = bmanutencao;
+     }
+     
+     
+};
+
+class Predio: public Normal, public Subterraneo{
+protected:
+     
+     int nElem;
+     Andares andar;
+     Predio *predio;
+    
+     
+public:
+     Normal normal;
+     Subterraneo subterraneo;
+     Elevador x;
+     Elevador y;
+     Elevador z;
+     int getQdeTotal(){
+          return nElem;
+     }
+     
+     void QdeAndar(Subterraneo subterraneo, Normal normal){
+         int nElem;
+         this-> nElem =  normal.getQdeNormal() + subterraneo.getQdeSubterraneo() * (-1);
+         
+          andar;
+       
+     }
+     void QdeAndarPredio(){
+          cout << "\nQde Total de Andares: " <<getQdeTotal();
+     }
+     
+    void MetrosPercorridos(){
+         cout << "\n============================================";
+          cout << "\nElevador X: " << x.getMetrosPercorridos() << " metros";
+          cout << "\nElevador Y: " << y.getMetrosPercorridos()<< " metros";
+          cout << "\nElevador Z: " << z.getMetrosPercorridos()<< " metros";
+          cout << "\n============================================\n";
+    }
+     void PosicaoElevadores()
+     {
+          cout << "\n============================================";
+          cout << "\nElevador X: " << x.getPosicaoElevador () << "  Andar";
+          cout << "\nElevador Y: " << y.getPosicaoElevador() << "  Andar";
+          cout << "\nElevador Z: " << z.getPosicaoElevador()  << " Andar";
+          cout << "\n============================================\n";
+     }
+     
+     bool EmManutencao(char nomeElev){
+          if((nomeElev == 'x') || (nomeElev == 'X'))
+          {
+               x.setBmanutencao(true);
+               cout << "\nElevador X " << "  Em Manutencao com  " << x.getMetrosPercorridos() << " Metros";
+          }
+          if((nomeElev == 'y') || (nomeElev == 'Y'))
+          {
+               y.setBmanutencao(true);
+               cout << "\nElevador Y " << "  Em Manutencao com  " << y.getMetrosPercorridos() << " Metros";
+          }
+          if((nomeElev == 'z') || (nomeElev == 'Z'))
+          {
+               z.setBmanutencao(true);
+                cout << "\nElevador Z " << "  Em Manutencao com  " << z.getMetrosPercorridos() << " Metros";
+          }
+     }
+     
+    bool TirarManutencao(char nomeElev){
+          if((nomeElev == 'x') || (nomeElev == 'X'))
+          {
+               x.setBmanutencao(false);
+               x.setMetrosPercorridos(0);
+               cout << "\nElevador X " << "  Liberado " << x.getMetrosPercorridos() << " Metros";
+          }
+          if((nomeElev == 'y') || (nomeElev == 'Y'))
+          {
+               y.setBmanutencao(false);
+               y.setMetrosPercorridos(0);
+                cout << "\nElevador Y " << "  Liberado " << y.getMetrosPercorridos() << " Metros";
+          }
+          if((nomeElev == 'z') || (nomeElev == 'Z'))
+          {
+               z.setBmanutencao(false);
+               z.setMetrosPercorridos(0);
+               cout << "\nElevador Z " << "  Liberado " << z.getMetrosPercorridos() << " Metros";
+          }
+     }
+     void SituacaoElevadores(){
+          if(x.getBmanutencao()){
+               cout << "\n================================================\n";
+               cout << "\nElevador X está em manutencao!!!";
+               cout << "\n================================================\n";
+          }
+          else{
+               cout << "\n================================================\n";
+               cout << "\nElevador X esta Operando Normalmente!!";
+               cout << "\n================================================\n";
+          }
+          if(y.getBmanutencao()){
+               
+                cout << "\n================================================\n";
+               cout << "\nElevador Y está em manutencao!!!";
+               cout << "\n================================================\n";
+          }
+          else{
+               cout << "\n================================================\n";
+               cout << "\nElevador Y esta Operando Normalmente!!";
+               cout << "\n================================================\n";
+          }
+          if(z.getBmanutencao()){
+               
+                cout << "\n================================================\n";
+               cout << "\nElevador Z está em manutencao!!!";
+               cout << "\n================================================\n";
+          }
+          else{
+               cout << "\n================================================\n";
+               cout << "\nElevador Z esta Operando Normalmente!!";
+               cout << "\n================================================\n";
+          }
+     }
+     
+     void ChamarElevador(int andarAtual, int andarPretendido){
+         
+       
+         
+          if(andarAtual < getQdeSubterraneo())
+          {
+              
+               andarAtual =  getQdeSubterraneo();
+              
+               
+          }
+          if(andarAtual > getQdeNormal())
+          {
+             
+               andarAtual = getQdeNormal();
+               
+          }
+            if(andarPretendido < getQdeSubterraneo())
+          {
+               
+               andarPretendido =  getQdeSubterraneo();
+              
+          }
+          if(andarPretendido > getQdeNormal())
+          {
+               
+               andarPretendido = getQdeNormal();
+               
+          }
+     
+          //se elevador nao estiver em manutencao
+          if(((x.getPosicaoElevador() == y.getPosicaoElevador()) && (y.getPosicaoElevador() == z.getPosicaoElevador())) ){
+              //CHAMOU ELEVADOR X SE TODOS ESTIVEREM NO MESMO ANDAR
+              if(((x.getPosicaoElevador() != andarAtual ) || (y.getPosicaoElevador() != andarAtual  )) || (z.getPosicaoElevador() != andarAtual ))
+              {
+
+                    int i = 0;
+                    cout << "\nElevador X chamado";
+                    if(x.getBmanutencao() == false)
+                    {
+                         int pos = x.getPosicaoElevador();
+                         cout << "\nPosicao Elevador **** X = " << pos;
+                         while(pos != andarAtual)
+                         {
+                              
+                              if(pos  < andarAtual)
+                              {
+                                   pos++;
+                              }
+                            else if(pos > andarAtual)
+                             {
+                                  pos--;
+                             }
+                             x.setPosicaoElevador(pos);
+                              cout << "\nElevador X no Andar " << x.getPosicaoElevador();
+                              i++;
+                              
+                         }
+                         i = i * 3.15 +  x.getMetrosPercorridos();
+                         //colocar aki
+                         x.setMetrosPercorridos(i);
+                        
+                         cout << "\nPorta Abrindo!!!";
+                         for(int i=0; i <= 5; i++)
+                         {
+                              cout << " . . ";
+                              cout << "......";
+                         }
+                         cout << "\nPorta Fechando!!!";
+                         for(int i=0; i <= 5; i++)
+                         {
+                              cout << " . . ";
+                              cout << "......";
+                         }
+                         i = 0;
+                         //pos = x.getPosicaoElevador();
+                         while(pos != andarPretendido)
+                         {
+                              cout << "\nPretendido " << andarPretendido;
+                              if(pos  < andarPretendido)
+                              {
+                                    pos++;
+                                    cout << "\nPOS " << pos;
+                                  
+                              }
+                            else if(pos > andarPretendido)
+                             {
+                                  pos--;
+                                  cout << "\nPOS " << pos;
+                             }
+                             x.setPosicaoElevador(pos);
+                              cout << "\nElevador X no Andar " << x.getPosicaoElevador();
+                              i++;
+                         }
+                       
+                         i = i * 3.15 +  x.getMetrosPercorridos();
+                         
+                         x.setMetrosPercorridos(i);
+                         
+                         cout << "\nPorta Abrindo!!!";
+                         for(int i=0; i <= 5; i++)
+                         {
+                              cout << " . . ";
+                              cout << "......";
+                         }
+                         cout << "\nPorta Fechando!!!";
+                         for(int i=0; i <= 5; i++)
+                         {
+                              cout << " . . ";
+                              cout << "......";
+                         }
+                    }
+                    else{
+                              int pos;
+                         if(!y.getBmanutencao())
+                         {
+                              int i = 0;
+                              cout << "\nElevador Y chamado";
+                             int pos= y.getPosicaoElevador();
+                             cout << "\nElevador Y na Posicao = " << pos;
+                              while(pos != andarAtual)
+                              {
+                                   
+                                   if(pos  < andarAtual)
+                                   {
+                                        pos++;
+                                   }
+                                  else if(pos > andarAtual)
+                                  {
+                                       pos--;
+                                  }
+                                  y.setPosicaoElevador(pos);
+                                   cout << "\nElevador Y no Andar " << y.getPosicaoElevador();
+                                   i++;
+                                   
+                              }
+                              i = i * 3.15 +  y.getMetrosPercorridos();
+                              //colocar aki
+                              y.setMetrosPercorridos(i);
+                             
+                              cout << "\nPorta Abrindo!!!";
+                              for(int i=0; i <= 5; i++)
+                              {
+                                   cout << " . . ";
+                                   cout << "......";
+                              }
+                              cout << "\nPorta Fechando!!!";
+                              for(int i=0; i <= 5; i++)
+                              {
+                                   cout << " . . ";
+                                   cout << "......";
+                              }
+                              i = 0;
+                              pos = y.getPosicaoElevador();
+                              while(pos != andarPretendido)
+                              {
+                                   if(pos  <  andarPretendido)
+                                   {  
+                                        pos++;
+                                   }
+                                  else if(pos > andarPretendido)
+                                  {
+                                        pos--;
+                                  }
+                                  y.setPosicaoElevador(pos);
+                                   cout << "\nElevador Y no Andar " << y.getPosicaoElevador();
+                                   i++;
+                              }
+                            
+                              i = i * 3.15 +  y.getMetrosPercorridos();
+                              
+                              y.setMetrosPercorridos(i);
+                              
+                              cout << "\nPorta Abrindo!!!";
+                              for(int i=0; i <= 5; i++)
+                              {
+                                   cout << " . . ";
+                                   cout << "......";
+                              }
+                              cout << "\nPorta Fechando!!!";
+                              for(int i=0; i <= 5; i++)
+                              {
+                                   cout << " . . ";
+                                   cout << "......";
+                              }
+                         }
+                         else {
+                              if(!z.getBmanutencao())
+                              {
+                                   int i = 0;
+                                   cout << "\nElevador Z chamado";
+                                   if(!z.getBmanutencao())
+                                   {
+                                        int pos = z.getPosicaoElevador();
+                                          cout << "\nElevador Z na Posicao = " << pos;
+                                          cout << "\nAndar Atual " << andarAtual;
+                                        while(pos != andarAtual)
+                                        {
+                                             
+                                             if(pos  < andarAtual)
+                                             {
+                                                  pos= pos+1;
+                                             }
+                                            else if(pos > andarAtual)
+                                            {
+                                                  pos = pos-1;
+                                            }
+                                            z.setPosicaoElevador(pos);
+                                             cout << "\nElevador Z no Andar " << z.getPosicaoElevador();
+                                             i++;
+                                             
+                                        }
+                                        i = i * 3.15 +  z.getMetrosPercorridos();
+                                        //colocar aki
+                                        z.setMetrosPercorridos(i);
+                                       cout << "\nElevador Z na Posicao = " << pos;
+                                          cout << "\nAndar Atual " << andarAtual;
+                                        cout << "\nPorta Abrindo!!!";
+                                        for(int i=0; i <= 5; i++)
+                                        {
+                                             cout << " . . ";
+                                             cout << "......";
+                                        }
+                                        cout << "\nPorta Fechando!!!";
+                                        for(int i=0; i <= 5; i++)
+                                        {
+                                             cout << " . . ";
+                                             cout << "......";
+                                        }
+                                        i = 0;
+                                        pos = z.getPosicaoElevador();
+                                        while(pos != andarPretendido)
+                                        {
+                                             if(pos  < andarPretendido)
+                                             {
+                                                  pos++;
+                                             }
+                                            else if(pos > andarPretendido)
+                                            {
+                                                 pos--;
+                                            }
+                                            z.setPosicaoElevador(pos);
+                                             cout << "\nElevador Z no Andar " << z.getPosicaoElevador();
+                                             i++;
+                                        }
+                                      
+                                        i = i * 3.15 +  z.getMetrosPercorridos();
+                                        
+                                        z.setMetrosPercorridos(i);
+                                        
+                                        cout << "\nPorta Abrindo!!!";
+                                        for(int i=0; i <= 5; i++)
+                                        {
+                                             cout << " . . ";
+                                             cout << "......";
+                                        }
+                                        cout << "\nPorta Fechando!!!";
+                                        for(int i=0; i <= 5; i++)
+                                        {
+                                             cout << " . . ";
+                                             cout << "......";
+                                        }
+                                   }
+                              }
+                         }//RETORE
+                    }
+              }
+              //FIM POSICAO ELEVADO DIFERENTE ANDAR ATUAL
+          }//FIM CHAMAR ELEVADOR    'X'   NA INICIAZAÇAO TODOS IGUAIS
+          else{
+               //METODO PARA CHAMAR O MAIS PROXIMO
+               
+               int x1 = x.getPosicaoElevador();
+               int y2 = y.getPosicaoElevador();
+               int z3 = z.getPosicaoElevador();
+             //  cout << "\nPosicao x " << x1;
+            //   cout << "\nPosicao y " << y2;
+            //   cout << "\nPosicao z " << z3;
+               int ii = andarAtual;
+              int X = 0, Y= 0, Z= 0;
+              
+              while(ii != x1) 
+              {
+                   
+                   if(x1 < ii)
+                   {
+                        x1++;
+                        
+                       
+                   }
+                   else if(x1 > ii)
+                   {
+                        x1--;
+                      
+                   }
+                   
+                     X++;
+              }
+              
+               while(ii !=y2) 
+              {
+                 
+                   if(y2 < ii)
+                   {
+                       y2++;
+                       
+                   }
+                   else if(y2 > ii)
+                   {
+                       y2--;
+                      
+                   }
+                   
+                     Y++;
+              }
+              
+               
+              while(ii !=z3) 
+              {
+                   
+                   if(z3 < ii)
+                   {
+                       z3++;
+                       
+                   }
+                   else if(z3 > ii)
+                   {
+                       z3--;
+                      
+                   }
+                   
+                     Z++;
+              }
+              
+              
+               if(( X <= Y) && (Z >=X))//x
+               {
+                    cout << "\nChamar Elevador X";
+                    if(!x.getBmanutencao()){
+                         x.setBchamar(true);
+                         y.setBchamar(false);
+                         z.setBchamar(false);
+                    }
+                     else if(!y.getBmanutencao()){
+                         x.setBchamar(false);
+                         y.setBchamar(true);
+                         z.setBchamar(false);
+                    }
+                   else if(!z.getBmanutencao()){
+                          x.setBchamar(false);
+                         y.setBchamar(false);
+                         z.setBchamar(true);
+                    }
+                   
+               }
+              if(( Y < X) && (Z >= Y)) //y2    
+               {
+                   
+                    cout << "\nChamar Elevador Y";
+
+                    if(!y.getBmanutencao()){
+                         x.setBchamar(false);
+                         y.setBchamar(true);
+                         z.setBchamar(false);
+                    }
+                     else if(!x.getBmanutencao()){
+                         x.setBchamar(true);
+                         y.setBchamar(false);
+                         z.setBchamar(false);
+                    }
+                   else if(!z.getBmanutencao()){
+                         x.setBchamar(false);
+                         y.setBchamar(false);
+                         z.setBchamar(true);
+                    }
+                  
+               }
+               if(( X >= Y) && (Z < Y))//z3
+               {      
+                    cout << "\nChamar Elevador Z";
+                    if(!z.getBmanutencao()){
+                         x.setBchamar(false);
+                         y.setBchamar(false);
+                         z.setBchamar(true);
+                    }
+                     else if(!x.getBmanutencao()){
+                         x.setBchamar(true);
+                         y.setBchamar(false);
+                         z.setBchamar(false);
+                    }
+                  
+                    else if(!y.getBmanutencao()){
+                         x.setBchamar(false);
+                         y.setBchamar(true);
+                         z.setBchamar(false);
+                    }
+               }
+               
+              if((x.getBchamar()) && (!x.getBmanutencao()))
+              {
+                  int  i =0;
+                  int pos = x.getPosicaoElevador();
+                  cout << "\nElevador X posicao " << pos;
+                   while(pos != andarAtual)
+                   {
+                        if(x.getPosicaoElevador() < andarAtual)
+                        {
+                             pos++;
+                        }
+                        else if(x.getPosicaoElevador() > andarAtual)
+                        {
+                              pos--;
+                        }
+                        i++;
+                        x.setPosicaoElevador(pos);
+                        cout << "\nElevador X no Andar " << x.getPosicaoElevador();
+                   }
+                    i = i * 3.15 +  x.getMetrosPercorridos();
+                    x.setMetrosPercorridos(i);
+                    cout << "\nPorta Abrindo!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    cout << "\nPorta Fechando!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    i = 0;
+                    pos = x.getPosicaoElevador();
+                   while(pos != andarPretendido)
+                    {
+                         if(x.getPosicaoElevador()  < andarPretendido)
+                         {
+                              pos++;
+                              x.setPosicaoElevador( pos );
+                         }
+                       else if(x.getPosicaoElevador() > andarPretendido)
+                        {
+                             pos--;
+                             x.setPosicaoElevador( pos );
+                        }
+                         cout << "\nElevador X no Andar " << x.getPosicaoElevador();
+                         i++;
+                    }
+                  
+                    i = i * 3.15 +  x.getMetrosPercorridos();
+                    x.setMetrosPercorridos(i);
+                    
+                    cout << "\nPorta Abrindo!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    cout << "\nPorta Fechando!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+              }
+         
+              else if((y.getBchamar()) && (!y.getBmanutencao()))
+              {
+                  
+                    int i =0;
+                    int pos = y.getPosicaoElevador();
+                   while(y.getPosicaoElevador() != andarAtual)
+                   {
+                        if( pos < andarAtual)
+                        {
+                             pos++;
+                             y.setPosicaoElevador( pos );
+                        }
+                       else if(pos > andarAtual)
+                        {
+                              pos--;
+                              y.setPosicaoElevador( pos );
+                        }
+                        i++;
+                        cout << "\nElevador Y no andar " << y.getPosicaoElevador();
+                   }
+                    i = i * 3.15 +  y.getMetrosPercorridos();
+                    y.setMetrosPercorridos(i);
+                    cout << "\nPorta Abrindo!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    cout << "\nPorta Fechando!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    i = 0;
+                    pos = y.getPosicaoElevador();
+                     cout << "\nElevador Y posicao " << pos;
+                   while(pos != andarPretendido)
+                    {
+                         if( pos < andarPretendido)
+                         {
+                              pos++;
+                              y.setPosicaoElevador(pos );
+                         }
+                       else if(pos > andarPretendido)
+                        {
+                             pos--;
+                             y.setPosicaoElevador( pos );
+                        }
+                         cout << "\nElevador Y no Andar " << y.getPosicaoElevador();
+                         i++;
+                    }
+                  
+                    i = i * 3.15 +  x.getMetrosPercorridos();
+                    y.setMetrosPercorridos(i);
+                    
+                    cout << "\nPorta Abrindo!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    cout << "\nPorta Fechando!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                 
+               }//FIM CHAMAR Y
+               else if((z.getBchamar()) &&  (!z.getBmanutencao()))
+               {
+                    int i =0;
+                    int pos = z.getPosicaoElevador() ;
+                     
+                     cout << "\nElevador Z na Posicao = " << pos;
+                    cout << "\nAndar Atual " << andarAtual;
+                   while(pos != andarAtual)
+                   {
+                        if(pos < andarAtual)
+                        {
+                             pos++;
+                             z.setPosicaoElevador( pos );
+                        }
+                       else if(pos > andarAtual)
+                        {
+                             pos--;
+                              z.setPosicaoElevador(pos );
+                        }
+                        i++;
+                         cout << "\nElevador Z no andar " << z.getPosicaoElevador();
+                   }
+                    i = i * 3.15 +  z.getMetrosPercorridos();
+                    z.setMetrosPercorridos(i);
+                    cout << "\nPorta Abrindo!!!";
+                         for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    cout << "\nPorta Fechando!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    i = 0;
+                    //pos = z.getPosicaoElevador() ;
+                   while(pos != andarPretendido)
+                    {
+                         if(pos  < andarPretendido)
+                         {
+                              pos++;
+                              z.setPosicaoElevador( pos );
+                         }
+                       else if(pos > andarPretendido)
+                        {
+                             pos--;
+                             z.setPosicaoElevador( pos );
+                        }
+                         cout << "\nElevador Z no Andar " << z.getPosicaoElevador();
+                         i++;
+                    }
+             
+                    i = i * 3.15 +  z.getMetrosPercorridos();
+                    z.setMetrosPercorridos(i);
+               
+                    cout << "\nPorta Abrindo!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+                    cout << "\nPorta Fechando!!!";
+                    for(int i=0; i <= 5; i++)
+                    {
+                         cout << " . . ";
+                         cout << "......";
+                    }
+               }//FIM CHAMAR z
+               
+          }//FIM ELSE CHAMAR MAIS PROXIMO
+         
+           x.setBchamar(false);
+          y.setBchamar(false);
+          z.setBchamar(false);
+     }//FIM FUNÇÃO CHAMAR ELEVADOR
+ 
+};
+
+int main()
+{
+     int op = 1;
+     Predio *predio = new Predio;
+     Andares andar;
+     Elevador x;
+     Elevador y;
+     Elevador  z;
+     Subterraneo subterraneo;
+     Normal normal;
+     predio->x.setPosicaoElevador(0);
+     predio->y.setPosicaoElevador(0);
+     predio->z.setPosicaoElevador(0);
+     predio->x.setBchamar(false);
+     predio->y.setBchamar(false);
+     predio->z.setBchamar(false);
+     predio->x.setBmanutencao(false);
+     predio->y.setBmanutencao(false);
+     predio->z.setBmanutencao(false);
+     while(op != 0)
+     {
+          
+          cout << "\n1 - Inserir qde de Andares";
+          cout << "\n2 - Qde de Andares";
+          cout << "\n3 - Chamar Elevador";
+          cout << "\n4 - Listar quantidade de Metros Percorridos";
+          cout << "\n5 - Posicao Elevador";
+          cout << "\n6 - Colocar em Manutencao: ";
+          cout << "\n7 - Tirar da Manutencao";
+          cout << "\n8 - Situacao dos Elevadores";
+          cout << "\nOperacao:  ";
+          cin >> op;
+          
+          switch(op)
+          {
+               case  1:
+                    cout << "Qde Andar Subterraneo: ";
+                    int qdeSub;
+                    cin >> qdeSub;
+                    qdeSub = qdeSub;
+                    subterraneo.setQdeSubterraneo(qdeSub);
+                    cout << "Qde Andar Normal: ";
+                    int qdeNorm;
+                    cin >> qdeNorm;
+                    qdeNorm = qdeNorm;
+                    normal.setQdeNormal(qdeNorm); 
+                    predio->QdeAndar(subterraneo, normal);
+                    predio->setQdeNormal(qdeNorm);
+                    predio->setQdeSubterraneo(qdeSub);
+                    break;
+               case 2:
+                    predio->QdeAndarPredio();
+                    cout << "\nQuantidade Andar Subterraneo: " <<subterraneo.getQdeSubterraneo();
+                    cout << "\nQuantidade de Andar Normal " << normal.getQdeNormal() << endl;
+                    break;
+               case 3:
+                    cout << "\nAndar Atual : ";
+                    int atual;
+                    cin >> atual;
+                    cout << "\nPretendido: ";
+                    int pretendido;
+                    cin >> pretendido;
+                    predio->ChamarElevador(atual, pretendido);
+                    break;
+               case 4:
+                    predio->MetrosPercorridos();
+                    break;
+               case 5:
+                    predio->PosicaoElevadores();
+                    break;
+               case 6:
+                    cout << "Nome do Elevador: ";
+                    char nomeElev;
+                    cin >> nomeElev;
+                    predio->EmManutencao(nomeElev);
+                    break;
+                    
+               case 7:
+                    cout << "\nNome Elevador";
+                    nomeElev;
+                    cin >> nomeElev;
+                    predio->TirarManutencao(nomeElev);
+                    break;
+               case 8:
+                    predio->SituacaoElevadores();
+                    break;
+          }
+          
+     
+          
+     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
