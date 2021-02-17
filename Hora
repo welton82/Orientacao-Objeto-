@@ -1,0 +1,95 @@
+#include<iostream>
+
+using namespace std;
+
+class HoraCerta
+{
+	private:
+		int hora;
+		int minutos;
+		int segundos;
+	
+	public:
+		//FUNÇÃO PARA HORA
+		int getHora()
+		{
+			return hora;
+		}
+		void setHora(int h)
+		{
+			hora = h;
+		}
+		//FUÇÃO PARA MINUTO
+		int getMinuto()
+		{
+			return minutos;
+		}
+		void setMinutos(int m)
+		{
+			minutos = m;
+		}
+		
+		int getSegundos()
+		{
+			return segundos;
+		}
+		void setSegundos(int s)
+		{
+			segundos = s;
+		}
+		
+		
+		
+};
+
+
+int main()
+{
+	int h,m,s;
+	
+	HoraCerta horacerta;
+	cout << "informe hora de 0 a 23: ";
+	cin >> h;   	
+	if(h>23)
+	{
+		h = 23;
+	}
+	if(h<0)
+	{
+		h=0;
+	}
+	horacerta.setHora(h);
+	
+	
+	cout << "\ninforme minutos de 0 a 59: ";
+	cin >> m;
+	if(m>59)
+	{
+		m=59;
+	}
+	if(m<0)
+	{
+		m=0;
+	}
+	horacerta.setMinutos(m);
+	
+	cout <<"\nInforme os segundos de 0 a 59 ";
+	cin >> s;
+	if(s>59)
+	{
+		s=59;
+	}
+	if(s<0)
+	{
+		s=0;
+	}
+	horacerta.setSegundos(s);
+	
+	
+	cout << "\nHora informada eh: " << horacerta.getHora() << " : "<< 
+	horacerta.getMinuto() <<" : "<< horacerta.getSegundos();
+	
+
+	return 0;
+}
+
