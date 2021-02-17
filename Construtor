@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+
+class Data{
+private:
+    int dia;
+    int mes;
+    int ano;
+public:
+    Data(int dia, int mes, int ano){
+        this->dia = dia;
+        this->mes = mes;
+        this->ano = ano;
+    }
+    void setDia(int dia){
+         this->dia = dia;
+    }
+    int getDia(){
+        return dia;
+    }
+
+    void setMes(int mes){
+         this->mes = mes;
+    }
+    int getMes(){
+        return mes;
+    }
+
+    void setAno(int ano){
+         this->ano = ano;
+    }
+    int getAno(){
+        return ano;
+    }
+    //metodo estatico cria objeto independente da classe
+    //para acessar os metodos da classe deve se Criar objetos dessa mesma classe
+    static int difData(Data dtInicial, Data dtFinal){
+        return dtInicial.getAno() - dtFinal.getAno();
+    }
+};
+
+int main()
+{
+    int dia, mes, ano;
+    int dtF, dtI;
+    cout << "\nInforme o dia: ";
+    cin >> dia;
+    cout << "\nInforme o mes: ";
+    cin >> mes;
+    cout << "\nInforme o ano: ";
+    cin >> ano;
+    //entrada para o metodo construtor
+    Data teste(dia, mes, ano);
+    cout << "dia: " << teste.getDia()<< " Mes: "<< teste.getMes()<< " Ano:  " <<
+     teste.getAno() << endl;
+    cout << "\nInforme o dia: ";
+    cin >> dia;
+    cout << "\nInforme o mes: ";
+    cin >> mes;
+    cout << "\nInforme o ano: ";
+    cin >> ano;
+     //entrada para o metodo construtor
+    Data teste2(dia, mes, ano);
+    //metodo static deve receber objetos da classe como parametros
+    //neste caso teste e teste2
+    dtF = Data::difData(teste,teste2);//operador scopo duas vezes :: para static
+    
+    cout << "\nDiferenca das datas: " <<dtF;
+     cout << "\nDiferenca das datas: " <<Data::difData(teste,teste2) ;
+}
+
+
+
+
+
+
+
+
+
